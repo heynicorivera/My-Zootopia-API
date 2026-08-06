@@ -1,10 +1,19 @@
-import json
+import os
+import requests
+from dotenv import load_dotenv
+
+load_dotenv()
+
+API_URL = "https://api.api-ninjas.com/v1/animals"
+API_KEY = os.getenv("API_KEY")
 
 
-def load_data(file_path):
-    """ Loads JSON file"""
-    with open(file_path, "r") as handle:
-        return json.load(handle)
+def fetch_data(animal_name):
+    """Fetches animal data from the API Ninjas Animals API."""
+    headers = {"X-Api-Key": API_KEY}
+    params = {"name": animal_name}
+    response = requests.get(API_URL, headers=headers, params=params)
+    return response.json()
 
 
 def serialize_animal(animal_obj):
@@ -27,7 +36,7 @@ def serialize_animal(animal_obj):
 
 
 def main():
-    animals_data = load_data("animals_data.json")
+    animals_data = fetch_data("Fox")
 
     output = ""
     for animal in animals_data:
