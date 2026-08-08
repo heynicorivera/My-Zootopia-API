@@ -39,9 +39,12 @@ def main():
     animal_name = input("Enter a name of an animal: ")
     animals_data = fetch_data(animal_name)
 
-    output = ""
-    for animal in animals_data:
-        output += serialize_animal(animal)
+    if animals_data:
+        output = ""
+        for animal in animals_data:
+            output += serialize_animal(animal)
+    else:
+        output = f'<h2>The animal "{animal_name}" doesn\'t exist.</h2>'
 
     with open("animals_template.html", "r") as handle:
         template = handle.read()
