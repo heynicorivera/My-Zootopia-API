@@ -9,7 +9,7 @@ API_KEY = os.getenv("API_KEY")
 
 
 def fetch_data(animal_name):
-    """Fetches animal data from the API Ninjas Animals API."""
+    """Gets the animals from the API. Returns a list of dictionaries."""
     headers = {"X-Api-Key": API_KEY}
     params = {"name": animal_name}
     response = requests.get(API_URL, headers=headers, params=params)
