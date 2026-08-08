@@ -1,19 +1,4 @@
-import os
-import requests
-from dotenv import load_dotenv
-
-load_dotenv()
-
-API_URL = "https://api.api-ninjas.com/v1/animals"
-API_KEY = os.getenv("API_KEY")
-
-
-def fetch_data(animal_name):
-    """Fetches animal data from the API Ninjas Animals API."""
-    headers = {"X-Api-Key": API_KEY}
-    params = {"name": animal_name}
-    response = requests.get(API_URL, headers=headers, params=params)
-    return response.json()
+import data_fetcher
 
 
 def serialize_animal(animal_obj):
@@ -37,7 +22,7 @@ def serialize_animal(animal_obj):
 
 def main():
     animal_name = input("Enter a name of an animal: ")
-    animals_data = fetch_data(animal_name)
+    animals_data = data_fetcher.fetch_data(animal_name)
 
     if animals_data:
         output = ""
