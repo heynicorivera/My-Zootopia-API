@@ -36,7 +36,8 @@ def serialize_animal(animal_obj):
 
 
 def main():
-    animals_data = fetch_data("Fox")
+    animal_name = input("Enter a name of an animal: ")
+    animals_data = fetch_data(animal_name)
 
     output = ""
     for animal in animals_data:
@@ -49,6 +50,8 @@ def main():
 
     with open("animals.html", "w") as handle:
         handle.write(final_html)
+
+    print("Website was successfully generated to the file animals.html.")
 
 
 if __name__ == "__main__":
